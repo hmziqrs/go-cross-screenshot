@@ -1,4 +1,4 @@
-module hackerhgl/go-cross-screenshots
+module hackerhgl/go-cross-screenshot
 
 go 1.14
 

@@ -14,7 +14,9 @@ jobs:
           $env:GOOS = "windows"
           $env:GORCH = "amd64" 
           go build -o build/screenshot-windows.exe
-          .\build\screenshot.exe testing-windows
+          dir
+          dir ./build
+          ./build/screenshot.exe testing-windows
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
