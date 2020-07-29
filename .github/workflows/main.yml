@@ -29,12 +29,12 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           GOOS=linux
-          GORCH=amd64"
+          GORCH=amd64
           go build -o build/screenshot-linux
-          ./build/screenshot-linux.exe testing-linux
+          ./build/screenshot-linux testing-linux
       - name: linux release build for github
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'build/screenshot-linux.exe,testing-linux.png'
+          artifacts: 'build/screenshot-linux,testing-linux.png'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
