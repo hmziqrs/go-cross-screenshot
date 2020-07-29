@@ -28,8 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          $env:GOOS = "linux"
-          $env:GORCH = "amd64" 
+          GOOS=linux
+          GORCH=amd64"
           go build -o build/screenshot-linux
           ./build/screenshot-linux.exe testing-linux
       - name: linux release build for github
