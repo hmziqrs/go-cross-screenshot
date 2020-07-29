@@ -14,12 +14,27 @@ jobs:
           $env:GOOS = "windows"
           $env:GORCH = "amd64" 
           go build -o build/screenshot-windows.exe
-          dir
-          dir ./build
           ./build/screenshot-windows.exe testing-windows
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
           artifacts: 'build/screenshot-windows.exe,testing-windows.png'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          $env:GOOS = "linux"
+          $env:GORCH = "amd64" 
+          go build -o build/screenshot-linux
+          ./build/screenshot-linux.exe testing-linux
+      - name: linux release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'build/screenshot-linux.exe,testing-linux.png'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
