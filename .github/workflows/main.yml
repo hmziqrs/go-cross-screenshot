@@ -1,0 +1,23 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Release Builds
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          $env:GOOS = "windows"
+          $env:GORCH = "amd64" 
+          go build -o build/screenshot-windows.exe
+          .\build\screenshot.exe testing-windows
+      - name: Windows release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'build/screenshot-windows.exe,testing-windows.png'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
