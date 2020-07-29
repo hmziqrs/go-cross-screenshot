@@ -16,7 +16,7 @@ jobs:
           go build -o build/screenshot-windows.exe
           dir
           dir ./build
-          ./build/screenshot.exe testing-windows
+          ./build/screenshot-windows.exe testing-windows
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
