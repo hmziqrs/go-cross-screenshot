@@ -40,3 +40,20 @@ jobs:
           artifacts: 'build/screenshot-linux,testing-linux.png'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
+
+  macos:
+    name: MacOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          GOOS=darwin
+          GORCH=amd64
+          go build -o build/screenshot-macos
+          ./build/screenshot-macos testing-macos
+      - name: macos release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'build/screenshot-macos,testing-macos.png'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
