@@ -28,6 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
+          go run main.go lmao
+          ls -l
           GOOS=linux
           GORCH=amd64
           go build -o build/screenshot-linux
