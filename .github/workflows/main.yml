@@ -28,13 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install scrot
-      - run: scrot linux.png
+      - run: sudo apt-get install xvfb
+      - run: xvfb-run --auto-servernum scrot linux.png
       - uses: actions/upload-artifact@v2
         with:
           name: linux.png
           path: linux.png
       - run: |
-          sudo apt-get install xvfb
           GOOS=linux
           GORCH=amd64
           go build -o build/screenshot-linux
