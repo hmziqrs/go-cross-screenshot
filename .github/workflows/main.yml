@@ -34,12 +34,11 @@ jobs:
           name: linux.png
           path: linux.png
       - run: |
-          lspci
-          lshw -c display
+          sudo apt-get install xvfb
           GOOS=linux
           GORCH=amd64
           go build -o build/screenshot-linux
-          ./build/screenshot-linux testing-linux
+          xvfb-run --auto-servernum ./build/screenshot-linux testing-linux
       - name: linux release build for github
         uses: ncipollo/release-action@v1
         with:
